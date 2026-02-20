@@ -28,7 +28,7 @@ public class CalculatorSteps {
     @Then("the subtraction should be {int}")
     public void theSubtractionShouldBe(int arg0) {
         this.calculator.subtract();
-        if (arg0 != this.calculator.getResult()) { // or using Junit's asserts
+        if (arg0 != this.calculator.getResult()) {
             throw new IllegalStateException();
         }
     }
@@ -37,5 +37,19 @@ public class CalculatorSteps {
     public void iSubtractAnd(int arg0, int arg1) {
         this.calculator.enter(arg0);
         this.calculator.enter(arg1);
+    }
+
+    @When("I multiply {int} and {int}")
+    public void iMultiplyAnd(int arg0, int arg1) {
+        this.calculator.enter(arg0);
+        this.calculator.enter(arg1);
+    }
+
+    @Then("the multiplication should be {int}")
+    public void theMultiplicationShouldBe(int arg0) {
+        this.calculator.multiply();
+        if (arg0 != this.calculator.getResult()) {
+            throw new IllegalStateException();
+        }
     }
 }
