@@ -5,6 +5,7 @@ import io.cucumber.java.en.*;
 public class CalculatorSteps {
     private int res = 0;
     private Calculator calculator;
+    private Boolean dividedByZero=false;
 
     @Given("I have a Calculator")
     public void iHaveACalculator() {
@@ -51,5 +52,29 @@ public class CalculatorSteps {
         if (arg0 != this.calculator.getResult()) {
             throw new IllegalStateException();
         }
+    }
+
+    @When("I divide {int} and {int}")
+    public void iDivideAnd(int arg0, int arg1) {
+        this.calculator.enter(arg0);
+        this.calculator.enter(arg1);
+    }
+
+    @Then("the division should be {int}")
+    public void theDivisionShouldBe(int arg0) {
+        try {
+            this.calculator.divide();
+            this.dividedByZero=false;
+        }catch (ArithmeticException e){
+            this.dividedByZero=true;
+        }
+        if (arg0 != this.calculator.getResult()) {
+            throw new IllegalStateException();
+        }
+    }
+
+    @Then("an error occurred")
+    public boolean anErrorOccurred() {
+        return this.dividedByZero;
     }
 }
