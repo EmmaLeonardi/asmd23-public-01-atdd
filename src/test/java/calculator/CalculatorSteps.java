@@ -24,4 +24,18 @@ public class CalculatorSteps {
             throw new IllegalStateException();
         }
     }
+
+    @Then("the subtraction should be {int}")
+    public void theSubtractionShouldBe(int arg0) {
+        this.calculator.subtract();
+        if (arg0 != this.calculator.getResult()) { // or using Junit's asserts
+            throw new IllegalStateException();
+        }
+    }
+
+    @When("I subtract {int} and {int}")
+    public void iSubtractAnd(int arg0, int arg1) {
+        this.calculator.enter(arg0);
+        this.calculator.enter(arg1);
+    }
 }
