@@ -8,7 +8,6 @@ Feature:  Multiplying numbers with a Calculator
     When I multiply 2 and 1
     Then the multiplication should be 2
 
-
   Scenario:  Multiply a positive and negative number
     Given I have a Calculator
     When I multiply 1 and -1
