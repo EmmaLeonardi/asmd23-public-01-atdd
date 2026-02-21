@@ -58,13 +58,13 @@ public class CalculatorSteps {
     public void iDivideAnd(int arg0, int arg1) {
         this.calculator.enter(arg0);
         this.calculator.enter(arg1);
+        this.dividedByZero=true;
     }
 
     @Then("the division should be {int}")
     public void theDivisionShouldBe(int arg0) {
         try {
             this.calculator.divide();
-            this.dividedByZero=false;
         }catch (ArithmeticException e){
             this.dividedByZero=true;
         }
@@ -72,9 +72,12 @@ public class CalculatorSteps {
             throw new IllegalStateException();
         }
     }
-
-    @Then("an error occurred")
-    public boolean anErrorOccurred() {
-        return this.dividedByZero;
+    
+    @Then("it is {word} that an error occurred")
+    public void itIsThatAnErrorOccurred(String arg0) {
+        boolean expected = Boolean.parseBoolean(arg0);
+        if (this.dividedByZero!=expected) {
+            throw new IllegalStateException();
+        }
     }
 }

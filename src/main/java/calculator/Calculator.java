@@ -40,12 +40,7 @@ public class Calculator {
         if (numbers.size() != 2){
             throw new IllegalStateException();
         }
-        var divisor = numbers.get(0);
-        var dividend=numbers.get(1);
-        if(dividend==0){
-            throw new ArithmeticException("Can't divide by 0");
-        }
-        numbers.set(0, divisor/dividend);
+        numbers.set(0, numbers.get(0)/numbers.get(1));
         numbers.remove(1);
     }
 

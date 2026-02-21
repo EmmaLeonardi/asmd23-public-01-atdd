@@ -22,4 +22,4 @@ Feature:  Dividing numbers with a Calculator
   Scenario:  Divide by zero
     Given I have a Calculator
     When I divide 2 and 0
-    Then an error occurred
+    Then it is true that an error occurred
